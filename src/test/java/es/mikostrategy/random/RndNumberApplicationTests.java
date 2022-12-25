@@ -1,11 +1,11 @@
 package es.mikostrategy.random;
 
-import static es.mikostrategy.random.utils.RandomNumberUtils.generateRndNumbers;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import es.mikostrategy.random.utils.RandomNumberUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 class RndNumberApplicationTests {
@@ -50,4 +50,19 @@ class RndNumberApplicationTests {
 		assertEquals(numberLength, numberActual2);
 	}
 
+	@Test
+	public void whenNumberOfArrayLengthNumberNegativeNumberLengthOkGenerate_ThenReturnAnArrayOf4RndIntegerBetweenZeroToNine() {
+		// Given
+		final int arrayLength = -2;
+		final int numberLength = 4;
+
+		// When
+		try {
+			Integer[] arr = RandomNumberUtils.generateRndNumbers().apply(arrayLength, numberLength);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+	}
+
 }
+
