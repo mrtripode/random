@@ -28,18 +28,10 @@ public interface RandomNumberUtils<T, V, R> extends BiFunction<Integer, Integer,
 
 				int result = new Random().nextInt(bound);
 				final String tempResult = String.valueOf(result);
-				//final int boundLength = String.valueOf(bound).length();
 
 				if (result < 1_000_000_000 && tempResult.length() < 9) {
 					result = Integer.parseInt(
 							StringUtils.rightPad(tempResult, 9, String.valueOf(new Random().nextInt(9))));
-				} else {
-					/*if (tempResult.length() < numberLength) {
-						result = BigDecimal.valueOf(
-								StringUtils.rightPad(tempResult, numberLength, String.valueOf(new Random().nextInt(9))));
-
-						return BigDecimal.ONE;
-					}*/
 				}
 
 				return result;
